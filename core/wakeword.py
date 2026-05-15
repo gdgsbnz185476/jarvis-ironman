@@ -1,43 +1,15 @@
-import pvporcupine
-import pyaudio
-import struct
+# core/wakeword.py
+import speech_recognition as sr
 
-def wait_for_wakeword():
-    porcupine = pvporcupine.create(
-        keywords=["jarvis"]
-    )
+def listen_for_wakeword():
+    r = sr.Recognizer()
 
-    pa = pyaudio.PyAudio()
-
-    stream = pa.open(
-        rate=porcupine.sample_rate,
-        channels=1,
-        format=pyaudio.paInt16,
-        input=True,
-        frames_per_buffer=porcupine.frame_length
-    )
-
-    print("Awaiting wakeword: 'Jarvis'")
-
-    try:
+    with sr.Microphone() as source:
         while True:
-            pcm = stream.read(
-                porcupine.frame_length,
-                exception_on_overflow=False
-            )
-
-            pcm = struct.unpack_from(
-                "h" * porcupine.frame_length,
-                pcm
-            )
-
-            keyword_index = porcupine.process(pcm)
-
-            if keyword_index >= 0:
-                print("Wakeword detected.")
-                return True
-
-    finally:
-        stream.close()
-        pa.terminate()
-        porcupine.delete()
+            audio = r.listen(source, phrase_time_limit=3)
+            try:
+                text = r.recognize_google(audio).lower()
+                if "jarvis" in text:
+                    return True
+            except:
+                pass

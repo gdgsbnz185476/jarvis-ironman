@@ -1,10 +1,10 @@
-from flask import Flask, jsonify
-from core.memory import load
+from flask import Flask
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return jsonify(load())
+    return "<h1>JARVIS GOD MODE ACTIVE</h1>"
 
-app.run(port=5001, debug=True)
+if __name__ == "__main__":
+    app.run(port=5000)

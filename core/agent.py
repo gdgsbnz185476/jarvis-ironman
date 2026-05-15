@@ -1,28 +1,21 @@
-import json
-from core.brain import ask_ai
-from core.safety import allow_tool
-from tools.system import run
+from core.planner import create_plan
+from core.router import execute
+from core.memory import save_memory
+from core.voice import speak
 
-def handle(user, memory):
-    res = ask_ai(user, memory)
+def run_agent(user_input):
+    plan = create_plan(user_input)
 
-    try:
-        data = json.loads(res)
-    except:
-        return str(res)
+    results = []
 
-    mode = data.get("mode", "chat")
+    for step in plan["steps"]:
+        result = execute(step)
+        results.append(result)
 
-    if mode == "chat":
-        return data.get("response", "No response")
+    final = " | ".join(results)
 
-    if mode == "tool":
-        tool = data.get("tool", "")
-        tool_input = data.get("input", "")
+    save_memory(f"Task: {user_input} | Result: {final}")
 
-        if allow_tool(tool):
-            return run(tool_input)
+    speak(final)
 
-        return "Tool blocked for safety."
-
-    return "Unknown mode."
+    return final
