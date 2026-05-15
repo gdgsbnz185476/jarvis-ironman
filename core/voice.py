@@ -1,24 +1,21 @@
 import speech_recognition as sr
 import os
 
-recognizer = sr.Recognizer()
-recognizer.energy_threshold = 300
-recognizer.dynamic_energy_threshold = True
-recognizer.pause_threshold = 0.6
+r = sr.Recognizer()
+r.dynamic_energy_threshold = True
+r.pause_threshold = 0.6
 
 def listen():
     try:
         with sr.Microphone() as source:
             print("Listening...")
-            recognizer.adjust_for_ambient_noise(source, duration=0.5)
-            audio = recognizer.listen(source, timeout=5)
+            r.adjust_for_ambient_noise(source, duration=0.3)
+            audio = r.listen(source, timeout=6)
 
-        text = recognizer.recognize_google(audio)
-        return text.lower()
+        return r.recognize_google(audio).lower()
 
     except:
         return ""
-    
 
 def speak(text):
     print("Jarvis:", text)

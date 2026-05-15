@@ -1,21 +1,16 @@
-from core.planner import create_plan
-from core.router import execute
+from core.brain import ask_ai
 from core.memory import save_memory
-from core.voice import speak
 
 def run_agent(user_input):
-    plan = create_plan(user_input)
 
-    results = []
+    try:
+        prompt = f"You are Jarvis. Respond clearly: {user_input}"
 
-    for step in plan["steps"]:
-        result = execute(step)
-        results.append(result)
+        response = ask_ai(prompt)
 
-    final = " | ".join(results)
+        save_memory(f"User: {user_input} | Jarvis: {response}")
 
-    save_memory(f"Task: {user_input} | Result: {final}")
+        return response
 
-    speak(final)
-
-    return final
+    except Exception as e:
+        return f"Agent error: {str(e)}"

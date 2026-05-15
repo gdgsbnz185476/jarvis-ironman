@@ -6,5 +6,10 @@
   {
     "user": "hello jar",
     "jarvis": "It looks like you started to say something. What's on your mind?\n\n{\n  \"mode\": \"chat\",\n  \"response\": \"It looks like you started to say something. What's on your mind?\"\n}"
-  }
+  },
+  "User: hello jar | Jarvis: AI Error: Invalid API Key",
+  "User: hello jay | Jarvis: AI Error: Invalid API Key",
+  "User: hello jar | Jarvis: Invalid API Key",
+  "User: exact | Jarvis: Invalid API Key",
+  "User: hello jar | Jarvis: Invalid API Key"
 ]

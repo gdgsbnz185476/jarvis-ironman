@@ -1,23 +1,17 @@
 from core.voice import listen
 from core.agent import run_agent
-import time
 
 def start_daemon():
-    print("JARVIS GOD MODE ACTIVE")
+
+    print("V21 AUTONOMOUS MODE ACTIVE")
 
     while True:
-        try:
-            user = listen()
+        user = listen()
 
-            if not user:
-                continue
+        if not user:
+            continue
 
-            if "exit" in user or "shutdown" in user:
-                print("Shutting down...")
-                break
+        if "exit" in user:
+            break
 
-            run_agent(user)
-
-        except Exception as e:
-            print("Recovered from error:", e)
-            time.sleep(1)
+        run_agent(user)

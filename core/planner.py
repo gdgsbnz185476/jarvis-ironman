@@ -3,21 +3,23 @@ from core.brain import ask_ai
 
 def create_plan(task):
     prompt = f"""
-Break this task into steps:
+You are a planning engine.
+
+Break this into steps.
+
+Return STRICT JSON:
+{{
+  "steps": [
+    {{"action": "...", "input": "..."}}
+  ]
+}}
 
 Task: {task}
-
-Return ONLY JSON:
-{
-  "steps": [
-    {"action": "string", "input": "string"}
-  ]
-}
 """
 
-    result = ask_ai(prompt)
+    res = ask_ai(prompt)
 
     try:
-        return json.loads(result)
+        return json.loads(res)
     except:
-        return {"steps": [{"action": "chat", "input": result}]}
+        return {"steps": [{"action": "chat", "input": res}]}

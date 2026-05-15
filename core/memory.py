@@ -1,17 +1,20 @@
 import json
+import os
 
-MEM_FILE = "memory.json"
+FILE = "memory.json"
 
 def load_memory():
+    if not os.path.exists(FILE):
+        return []
     try:
-        with open(MEM_FILE, "r") as f:
-            return f.read()
+        with open(FILE, "r") as f:
+            return json.load(f)
     except:
-        return ""
+        return []
 
 def save_memory(text):
     data = load_memory()
-    data += "\n" + text
+    data.append(text)
 
-    with open(MEM_FILE, "w") as f:
-        f.write(data)
+    with open(FILE, "w") as f:
+        json.dump(data, f, indent=2)
