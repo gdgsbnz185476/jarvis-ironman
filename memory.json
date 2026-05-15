@@ -1,0 +1,10 @@
+[
+  {
+    "user": "oh j",
+    "jarvis": "It looks like you started to say something. What's on your mind? \n\n{\n  \"mode\": \"chat\",\n  \"response\": \"It looks like you started to say something. What's on your mind?\"\n}"
+  },
+  {
+    "user": "hello jar",
+    "jarvis": "It looks like you started to say something. What's on your mind?\n\n{\n  \"mode\": \"chat\",\n  \"response\": \"It looks like you started to say something. What's on your mind?\"\n}"
+  }
+]
