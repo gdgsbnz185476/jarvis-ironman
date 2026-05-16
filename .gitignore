@@ -1,18 +1,19 @@
 # Python
 __pycache__/
 *.pyc
+*.pyo
 
 # Virtual env
 .venv/
 
-# Env keys
+# Secrets
 .env
 
-# Mac
+# macOS
 .DS_Store
 
 # Memory
-memory.txt
+memory.json
 
 # VSCode
 .vscode/
