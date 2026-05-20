@@ -1,9 +1,21 @@
 import speech_recognition as sr
-import os
+import subprocess
+
 
 r = sr.Recognizer()
 r.dynamic_energy_threshold = True
 r.pause_threshold = 0.6
+
+
+import subprocess
+
+def speak(text):
+    print("Jarvis:", text)
+
+    safe = str(text).replace('"', '').replace("'", "")
+
+    subprocess.run(["say", "-v", "alex", safe])
+
 
 def listen():
     try:
@@ -16,7 +28,3 @@ def listen():
 
     except:
         return ""
-
-def speak(text):
-    print("Jarvis:", text)
-    os.system(f'say -v Daniel "{text}"')

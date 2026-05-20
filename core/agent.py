@@ -1,16 +1,34 @@
 from core.brain import ask_ai
-from core.memory import save_memory
+from core.agents.planner import plan
+from core.agents.critic import validate
+from core.agents.memory_agent import save_memory
 
 def run_agent(user_input):
 
-    try:
-        prompt = f"You are Jarvis. Respond clearly: {user_input}"
+    # 1. PLAN
+    steps = plan(user_input)
 
-        response = ask_ai(prompt)
+    # 2. EXECUTE (LLM-based response for now)
+    response = ask_ai(f"""
+You are Jarvis.
 
-        save_memory(f"User: {user_input} | Jarvis: {response}")
+User request:
+{user_input}
 
-        return response
+Plan:
+{steps}
 
-    except Exception as e:
-        return f"Agent error: {str(e)}"
+Respond as final answer.
+""")
+
+    # 3. CRITIC CHECK
+    if not validate(response):
+        response = "I need to rethink that, sir."
+
+    # 4. MEMORY
+    save_memory({
+        "input": user_input,
+        "output": response
+    })
+
+    return response

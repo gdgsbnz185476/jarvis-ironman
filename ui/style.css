@@ -1,5 +1,57 @@
 body {
     background: black;
-    color: lime;
-    font-family: monospace;
-}
+    color: #00fff2;
+    font-family: Arial;
+    text-align: center;
+  }
+  
+  .hud {
+    margin-top: 40px;
+  }
+  
+  .orb {
+    width: 140px;
+    height: 140px;
+    margin: auto;
+    border-radius: 50%;
+    background: radial-gradient(circle, #00fff2, #001a1a);
+    box-shadow: 0 0 60px #00fff2;
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+  }
+  
+  #status {
+    margin: 10px;
+    color: #00ff99;
+  }
+  
+  #chat {
+    height: 300px;
+    overflow-y: auto;
+    margin: 20px;
+  }
+
+  .glow-text {
+    color: #00fff2;
+    text-shadow: 0 0 10px #00fff2;
+  }
+  
+  .panel {
+    border: 1px solid #00fff2;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 25px #00fff2;
+    animation: glow 2s infinite;
+  }
+
+  @keyframes glow {
+    0% { box-shadow: 0 0 10px #00fff2; }
+    50% { box-shadow: 0 0 30px #00fff2; }
+    100% { box-shadow: 0 0 10px #00fff2; }
+  }

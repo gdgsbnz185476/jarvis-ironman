@@ -1,9 +1,47 @@
+<!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="style.css">
+  <title>Jarvis V25</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<h1>JARVIS ONLINE</h1>
-<p>Voice system running...</p>
+
+ <div class="panel">
+        <h2>🧠 LIVE BRAIN ACTIVITY</h2>
+        <div id="brain">Idle...</div>
+      </div>
+      
+ <div class="panel">
+        <h2>📡 TASK ENGINE</h2>
+        <div id="tasks">Waiting...</div>
+      </div>
+
+<div class="panel">
+        <h2 class="glow-text">SYSTEM STATUS</h2>
+        <div id="status">IDLE</div>
+      </div>
+      
+<div class="panel">
+        <h2 class="glow-text">JARVIS MEMORY</h2>
+        <div id="memory">Loading...</div>
+      </div>
+
+<div class="hud">
+
+  <div class="orb"></div>
+
+  <h1>JARVIS V25 SYSTEM</h1>
+
+  <div id="status">STATUS: IDLE</div>
+
+  <div id="chat"></div>
+
+  <input id="input" placeholder="Talk to Jarvis..." />
+  <button onclick="send()">Send</button>
+
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
